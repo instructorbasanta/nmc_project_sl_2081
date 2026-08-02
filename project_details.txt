@@ -1,0 +1,11 @@
+ News portal
+    User/Public portal
+        - Home Page
+        - Listing page
+        - Detail Page (with Comment Sectio)
+        - Contact Us(send email)
+    Admin portal
+        - Login
+        - Dashboard
+        - Category Management
+        - Post Management

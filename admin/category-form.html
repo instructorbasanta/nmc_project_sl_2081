@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add / Edit Category | Daily News Portal</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<!-- ==========================================
+        ADMIN LAYOUT
+========================================== -->
+
+<div class="admin-layout">
+
+    <!-- ======================================
+            SIDEBAR
+    ======================================= -->
+
+    <aside class="admin-sidebar">
+
+        <div class="sidebar-logo">
+
+            <h2>
+
+                News Admin
+
+            </h2>
+
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li>
+
+                <a href="dashboard.html">
+
+                    🏠 Dashboard
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="category.html"
+                   class="active">
+
+                    📂 Categories
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="news.html">
+
+                    📰 News
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="register.html">
+
+                    👤 Users
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="../index.html">
+
+                    🌐 View Website
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="login.html">
+
+                    🚪 Logout
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ======================================
+            MAIN CONTENT
+    ======================================= -->
+
+    <main class="admin-content">
+
+        <!-- ==================================
+                TOP NAVIGATION
+        =================================== -->
+
+        <header class="admin-header">
+
+            <div>
+
+                <h2>
+
+                    Add / Edit Category
+
+                </h2>
+
+                <p>
+
+                    Create or update a news category
+
+                </p>
+
+            </div>
+
+            <div class="admin-user">
+
+                👤 Administrator
+
+            </div>
+
+        </header>
+
+        <!-- ==================================
+                BREADCRUMB
+        =================================== -->
+
+        <section class="admin-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+
+                        Category Form
+
+                    </h2>
+
+                    <p>
+
+                        Dashboard >
+                        Categories >
+                        Category Form
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <a href="category.html"
+                       class="action-btn">
+
+                        ← Back to List
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================
+                CATEGORY FORM
+        =================================== -->
+
+        <section class="admin-section">
+
+            <form action="#">
+
+                <!-- Category Title -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Category Title
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter category title"
+                        required>
+
+                </div>
+
+                <!-- Rank -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Display Rank
+
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        placeholder="Enter display rank"
+                        value="1">
+
+                </div>
+
+                <!-- Status -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Status
+
+                    </label>
+
+                    <select
+                        class="form-control">
+
+                        <option selected>
+
+                            Active
+
+                        </option>
+
+                        <option>
+
+                            Inactive
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Continue in Phase 5D-4B -->
+                                 <!-- ==================================
+                        CREATED BY
+                =================================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Created By
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter creator name"
+                        value="Administrator">
+
+                </div>
+
+                <!-- ==================================
+                        UPDATED BY
+                =================================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Updated By
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter updater name"
+                        value="Administrator">
+
+                </div>
+
+                <!-- ==================================
+                        FORM BUTTONS
+                =================================== -->
+
+                <div class="form-group"
+                     style="display:flex;
+                            gap:15px;
+                            flex-wrap:wrap;
+                            margin-top:30px;">
+
+                    <button type="submit"
+                            class="action-btn">
+
+                        💾 Save Category
+
+                    </button>
+
+                    <button type="reset"
+                            class="action-btn">
+
+                        🔄 Reset
+
+                    </button>
+
+                    <a href="category.html"
+                       class="action-btn">
+
+                        ← Back to List
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- ==================================
+                FOOTER
+        =================================== -->
+
+        <footer class="admin-footer">
+
+            <p>
+
+                © 2026 Daily News Portal |
+                Category Management |
+                All Rights Reserved.
+
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

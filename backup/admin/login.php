@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $error['login'] = "Invalid email or password";
                 } else {
                 session_start();
-                $_SESSION['user'] = $user;
+                $_SESSION['user'] = $result->fetch_assoc();
                 header("location: dashboard.php");
                 exit();
                 }
@@ -89,10 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         if (isset($error['connection'])) {
             echo displayFlashMessage($error['connection'],'error');
-        }
-
-        if (isset($_GET['msg'])) {
-            echo displayFlashMessage($_GET['msg'],'error');
         }
         ?>
 

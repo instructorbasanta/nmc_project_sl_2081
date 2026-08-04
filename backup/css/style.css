@@ -1547,23 +1547,3 @@ textarea.form-control{
 }
 
 }
-
-.btn-success{
-    background-color: #198754;
-    color: #ffffff;
-    padding: 8px 14px;
-    border-radius: 4px;
-}
-
-.btn-success:hover{
-    background-color: #146c43;
-}
-.btn-danger{
-    background-color: #7c141e;
-    color: #ffffff;
-    padding: 8px 14px;
-    border-radius: 4px;
-}
-.btn-danger:hover{
-    background-color: #bb2d3b;
-}

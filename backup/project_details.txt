@@ -1,0 +1,18 @@
+ News portal
+    User/Public portal
+        - Home Page
+        - Listing page
+        - Detail Page (with Comment Sectio)
+        - Contact Us(send email)
+    Admin portal
+        - Login
+        - Dashboard
+        - Category Management
+        - Post Management
+
+
+Database Table
+    - admins(id,name,email,password,status,last_login,role)
+    - categories (id,title,rank,stauts,created_at,updated_at-null,created_by,updated_by-null)
+    - posts (id,category_id,title,description,feature_image,feature_key,status,created_at,updated_at-null,created_by,updated_by-null)
+    - comments(id,post_id,name,email,comment,commented_at,status)

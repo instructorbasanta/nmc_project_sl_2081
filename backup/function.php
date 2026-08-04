@@ -12,14 +12,6 @@ const DB_NAME = 'db_nmc_2081_project';
         return '';
     }
 
-    function checkNumeric($field, $fieldName) {
-        if (!is_numeric($_POST[$field])) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     function displayError($error, $field) {
         if (isset($error[$field])) {
             return '<span class="error">' . $error[$field] . '</span>';
@@ -32,17 +24,5 @@ const DB_NAME = 'db_nmc_2081_project';
             return '<div class="alert alert-' . $type . '">' . $message . '</div>';
         }
         return '';
-    }
-
-    function checkLoginStatus() {
-        @session_start();
-        if (!isset($_SESSION['user'])) {
-            header("location: login.php?msg=Please login to access the dashboard");
-        }
-    }
-
-    function checkCurrentPage($page) {
-        $current_page = basename($_SERVER['PHP_SELF']);
-        return $current_page === $page ? 'active' : '';
     }
 ?>

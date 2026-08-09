@@ -1,5 +1,35 @@
 <?php
 require_once "../function.php";
+$limit = 2;
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+    $offset = ($page-1)*$limit;
+} else {
+    $offset = 0;
+    $page = 1;
+}
+
+try {
+$connection = new mysqli(DB_HOST,DB_USER,DB_PASS, DB_NAME);
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
+} catch (Exception $e) {
+    die("Database connection error: " . $e->getMessage());
+}
+$sqlRecordCount = "select count(*) as total_record from categories";
+$resultTotalCount = $connection->query($sqlRecordCount);
+$record = $resultTotalCount->fetch_assoc();
+$total_page = ceil($record['total_record']/$limit);
+
+$sql = "SELECT categories.*,admins.name as username FROM categories join admins on categories.created_by=admins.id limit $limit offset $offset";
+$result = $connection->query($sql);
+$data = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+}  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -164,6 +194,18 @@ require_once "../function.php";
                 }   
                 ?>
 
+                <?php
+                if (isset($_GET['response']) && $_GET['response'] ==  1) {
+                    echo displayFlashMessage('Deleted successfully','success');
+                }   
+                ?>
+
+                <?php
+                if (isset($_GET['response']) && $_GET['response'] ==  0) {
+                    echo displayFlashMessage('Delete failed','error');
+                }   
+                ?>
+
                 <table class="admin-table">
 
                     <thead>
@@ -197,44 +239,54 @@ require_once "../function.php";
                     </thead>
 
                     <tbody>
+                        <?php foreach($data as $category){ ?>
 
                         <tr>
 
-                            <td>1</td>
+                            <td><?php echo $category['id'] ?></td>
 
-                            <td>Technology</td>
+                            <td><?php echo $category['title'] ?></td>
 
-                            <td>1</td>
+                            <td><?php echo $category['rank'] ?></td>
 
                             <td>
+                                <?php if ($category['status'] ==  1) { ?>
+                                    <span class="status published" style='color:green'>
 
-                                <span class="status published">
+Active
 
-                                    Active
+</span>
+                               <?php } else { ?>
+                                    <span class="status " style='color:red'>
 
-                                </span>
+DeActive
+
+</span>
+                              <?php   } ?>
+
+                               
 
                             </td>
 
-                            <td>01 Jan 2026</td>
+                            <td><?php echo $category['created_at'] ?></td>
 
-                            <td>15 Jul 2026</td>
+                            <td><?php echo $category['updated_at'] ?></td>
 
-                            <td>Admin</td>
+                            <td><?php echo $category['username'] ?></td>
 
-                            <td>Editor</td>
+                            <td><?php echo $category['updated_by'] ?></td>
 
                             <td>
 
                                 <a href="category-form.html"
-                                   class="btn-sm">
+                                   class="btn-sm btn-warning">
 
                                     Edit
 
                                 </a>
 
-                                <a href="#"
-                                   class="btn-sm btn-danger">
+                                <a href="delete_category.php?id=<?php echo $category['id'] ?>"
+                                   class="btn-sm btn-danger" style='margin-top:10px'>
 
                                     Delete
 
@@ -243,237 +295,7 @@ require_once "../function.php";
                             </td>
 
                         </tr>
-
-                        <tr>
-
-                            <td>2</td>
-
-                            <td>Business</td>
-
-                            <td>2</td>
-
-                            <td>
-
-                                <span class="status published">
-
-                                    Active
-
-                                </span>
-
-                            </td>
-
-                            <td>01 Jan 2026</td>
-
-                            <td>10 Jul 2026</td>
-
-                            <td>Admin</td>
-
-                            <td>Admin</td>
-
-                            <td>
-
-                                <a href="category-form.html"
-                                   class="btn-sm">
-
-                                    Edit
-
-                                </a>
-
-                                <a href="#"
-                                   class="btn-sm btn-danger">
-
-                                    Delete
-
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>3</td>
-
-                            <td>Sports</td>
-
-                            <td>3</td>
-
-                            <td>
-
-                                <span class="status published">
-
-                                    Active
-
-                                </span>
-
-                            </td>
-
-                            <td>05 Jan 2026</td>
-
-                            <td>18 Jul 2026</td>
-
-                            <td>Editor</td>
-
-                            <td>Editor</td>
-
-                            <td>
-
-                                <a href="category-form.html"
-                                   class="btn-sm">
-
-                                    Edit
-
-                                </a>
-
-                                <a href="#"
-                                   class="btn-sm btn-danger">
-
-                                    Delete
-
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>4</td>
-
-                            <td>Health</td>
-
-                            <td>4</td>
-
-                            <td>
-
-                                <span class="status draft">
-
-                                    Inactive
-
-                                </span>
-
-                            </td>
-
-                            <td>08 Jan 2026</td>
-
-                            <td>20 Jul 2026</td>
-
-                            <td>Admin</td>
-
-                            <td>Reporter</td>
-
-                            <td>
-
-                                <a href="category-form.html"
-                                   class="btn-sm">
-
-                                    Edit
-
-                                </a>
-
-                                <a href="#"
-                                   class="btn-sm btn-danger">
-
-                                    Delete
-
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>5</td>
-
-                            <td>Education</td>
-
-                            <td>5</td>
-
-                            <td>
-
-                                <span class="status published">
-
-                                    Active
-
-                                </span>
-
-                            </td>
-
-                            <td>10 Jan 2026</td>
-
-                            <td>22 Jul 2026</td>
-
-                            <td>Admin</td>
-
-                            <td>Editor</td>
-
-                            <td>
-
-                                <a href="category-form.html"
-                                   class="btn-sm">
-
-                                    Edit
-
-                                </a>
-
-                                <a href="#"
-                                   class="btn-sm btn-danger">
-
-                                    Delete
-
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>6</td>
-
-                            <td>Entertainment</td>
-
-                            <td>6</td>
-
-                            <td>
-
-                                <span class="status published">
-
-                                    Active
-
-                                </span>
-
-                            </td>
-
-                            <td>12 Jan 2026</td>
-
-                            <td>25 Jul 2026</td>
-
-                            <td>Editor</td>
-
-                            <td>Admin</td>
-
-                            <td>
-
-                                <a href="category-form.html"
-                                   class="btn-sm">
-
-                                    Edit
-
-                                </a>
-
-                                <a href="#"
-                                   class="btn-sm btn-danger">
-
-                                    Delete
-
-                                </a>
-
-                            </td>
-
-                        </tr>
-
+                        <?php } ?>
                     </tbody>
 
                 </table>
@@ -487,41 +309,29 @@ require_once "../function.php";
         =========================================== -->
 
         <section class="admin-section">
-
+            <?php if($total_page > 1){ ?>
             <div class="pagination">
-
-                <a href="#">
+            
+            <?php if($page != 1){ ?>
+                <a href="category.php?page=<?php echo $page>1?$page-1:$page ?>">
 
                     Previous
 
                 </a>
-
-                <a href="#"
-                   class="active">
-
-                    1
-
-                </a>
-
-                <a href="#">
-
-                    2
-
-                </a>
-
-                <a href="#">
-
-                    3
-
-                </a>
-
-                <a href="#">
+                <?php } ?>
+                <?php for($i=1;$i<=$total_page;$i++){ ?>
+                    <a href="category.php?page=<?php echo $i ?>" class="<?php echo ($page == $i)?'active':'' ?>" ><?php echo $i; ?></a>
+                <?php } ?>
+               
+            <?php if($total_page != $page){ ?>
+                <a href="category.php?page=<?php echo $page<$total_page?$page+1:$page ?>">
 
                     Next
 
                 </a>
-
+                <?php } ?>
             </div>
+            <?php } ?>
 
         </section>
 
